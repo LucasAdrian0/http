@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trilhaapp/services/app_storage.dart';
 
 class ConfiguracoesPage extends StatefulWidget {
   const ConfiguracoesPage({super.key});
@@ -9,7 +10,7 @@ class ConfiguracoesPage extends StatefulWidget {
 }
 
 class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
-  late SharedPreferences storage;
+  AppStorageService storage = AppStorageService();
 
   TextEditingController nomeUsuarioController = TextEditingController();
   TextEditingController alturaController = TextEditingController();
@@ -19,11 +20,6 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
   bool receberNotificacoes = false;
   bool temaEscuro = false;
 
-  final CHAVE_NOME_USUARIO = "CHAVE_NOME_USUARIO";
-  final CHAVE_ALTURA = "CHAVE_ALTURA";
-  final CHAVE_RECEBERR_NOTIFICACAO = "CHAVE_RECEBER_NOTIFICACAO";
-  final CHAVE_TEMA_ESCURO = "CHAVE_MODO_ESCURO";
-
   @override
   void initState() {
     // TODO: implement initState
@@ -32,14 +28,11 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
   }
 
   void carregarDados() async {
-    storage = await SharedPreferences.getInstance();
-    setState(() {
-      nomeUsuarioController.text = storage.getString(CHAVE_NOME_USUARIO) ?? "";
-      alturaController.text = (storage.getDouble(CHAVE_ALTURA) ?? 0).toString();
-      receberNotificacoes =
-          storage.getBool(CHAVE_RECEBERR_NOTIFICACAO) ?? false;
-      temaEscuro = storage.getBool(CHAVE_TEMA_ESCURO) ?? false;
-    });
+    nomeUsuarioController.text = await storage.getConfiguracoesNomeUsuario();
+    alturaController.text = (await (storage.getConfiguracoesAltura())).toString();
+    receberNotificacoes = await storage.getConfiguracoesReceberNotificacao();
+    temaEscuro = await storage.getConfiguracoesTemaEscuro();
+    setState(() {});
   }
 
   @override
