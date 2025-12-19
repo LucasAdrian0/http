@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trilhaapp/services/app_storage.dart';
+import 'package:trilhaapp/model/configuracpes_model.dart';
+import 'package:trilhaapp/repositories/configuracoes_repository.dart';
 
 class ConfiguracoesHivePage extends StatefulWidget {
   const ConfiguracoesHivePage({super.key});
@@ -9,15 +10,11 @@ class ConfiguracoesHivePage extends StatefulWidget {
 }
 
 class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
-  AppStorageService storage = AppStorageService();
+  late ConfiguracoesRepository configuracoesRepository;
+  ConfiguracoesModel configuracoesModel = ConfiguracoesModel.vazio();
 
   TextEditingController nomeUsuarioController = TextEditingController();
   TextEditingController alturaController = TextEditingController();
-
-  String? nomeUsuario;
-  double? altura;
-  bool receberNotificacoes = false;
-  bool temaEscuro = false;
 
   @override
   void initState() {
@@ -26,11 +23,10 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
   }
 
   void carregarDados() async {
-    nomeUsuarioController.text = await storage.getConfiguracoesNomeUsuario();
-    alturaController.text = (await (storage.getConfiguracoesAltura()))
-        .toString();
-    receberNotificacoes = await storage.getConfiguracoesReceberNotificacao();
-    temaEscuro = await storage.getConfiguracoesTemaEscuro();
+    configuracoesRepository = await ConfiguracoesRepository.carregar();
+    configuracoesRepository = await ConfiguracoesRepository.carregar();
+    nomeUsuarioController.text = configuracoesModel.nomeUsuario;
+    alturaController.text =configuracoesModel.altura.toString();
     setState(() {});
   }
 
@@ -59,19 +55,19 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
               ),
               SwitchListTile(
                 title: Text("Receber notificações"),
-                value: receberNotificacoes,
+                value: configuracoesModel.receberNotificacoes,
                 onChanged: (bool value) {
                   setState(() {
-                    receberNotificacoes = value;
+                    configuracoesModel.receberNotificacoes = value;
                   });
                 },
               ),
               SwitchListTile(
                 title: Text("Tema Escuro"),
-                value: temaEscuro,
+                value: configuracoesModel.temaEscuro,
                 onChanged: (bool value) {
                   setState(() {
-                    temaEscuro = value;
+                    configuracoesModel.temaEscuro = value;
                   });
                 },
               ),
@@ -79,9 +75,8 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
                 onPressed: () async {
                   FocusManager.instance.primaryFocus?.unfocus();
                   try {
-                    await storage.setConfiguracoesAltura(
-                      double.parse(alturaController.text),
-                    );
+                      configuracoesModel.altura = 
+                      double.parse(alturaController.text);
                   } catch (e) {
                     showDialog(
                       context: context,
@@ -102,13 +97,8 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
                     );
                     return;
                   }
-                  await storage.setConfiguracoesNomeUsuario(
-                    nomeUsuarioController.text,
-                  );
-                  await storage.setConfiguracoesReceberNotificacao(
-                    receberNotificacoes,
-                  );
-                  await storage.setConfiguracoesTemaEscuro(temaEscuro);
+                  configuracoesModel.nomeUsuario = nomeUsuarioController.text;
+                  configuracoesRepository.salvar(configuracoesModel);
                   Navigator.pop(context);
                 },
                 child: Text("Salvar"),
