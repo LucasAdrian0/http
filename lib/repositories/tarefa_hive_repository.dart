@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:trilhaapp/model/tarefa_hive_model.dart';
 
@@ -19,7 +20,21 @@ class TarefaHiveRepository {
     _box.add(tarefaHiveModel);
   }
 
-  List<TarefaHiveModel> obterDados() {
+  alterar(TarefaHiveModel tarefaHiveModel) {
+    tarefaHiveModel.save();
+  }
+
+  excluir(TarefaHiveModel tarefaHiveModel) {
+    tarefaHiveModel.delete();
+  }
+
+  List<TarefaHiveModel> obterDados(bool naoConcluido) {
+    if (naoConcluido) {
+      return _box.values
+          .cast<TarefaHiveModel>()
+          .where((element) => !element.concluido)
+          .toList();
+    }
     return _box.values.cast<TarefaHiveModel>().toList();
   }
 }
