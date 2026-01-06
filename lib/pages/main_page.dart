@@ -3,6 +3,7 @@ import 'package:trilhaapp/pages/card_page.dart';
 import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_hive_page.dart';
+import 'package:trilhaapp/pages/tarefa_page/tarefa_sqlite_page.dart';
 import 'package:trilhaapp/shared/widget/coston_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _MainPageState extends State<MainPage> {
                   ImageAssetsPage(),
                   ListView(),
                   ListViewHorizontal(),
-                  TarefaPage(),
+                  TarefaSQLitePage() ,
                 ],
               ),
             ),
