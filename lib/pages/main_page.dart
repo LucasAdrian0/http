@@ -4,6 +4,7 @@ import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_hive_page.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_sqlite_page.dart';
+import 'package:trilhaapp/pages/teste_page.dart';
 import 'package:trilhaapp/shared/widget/coston_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -33,11 +34,12 @@ class _MainPageState extends State<MainPage> {
                   });
                 },
                 children: [
+                  HttpTestPage(),
                   CardPage(),
                   ImageAssetsPage(),
                   ListView(),
                   ListViewHorizontal(),
-                  TarefaSQLitePage() ,
+                  TarefaSQLitePage(),
                 ],
               ),
             ),
@@ -48,6 +50,7 @@ class _MainPageState extends State<MainPage> {
               },
               currentIndex: posicaoPagina,
               items: [
+                BottomNavigationBarItem(label: "HTTP", icon: Icon(Icons.get_app_rounded)),
                 BottomNavigationBarItem(label: "Page1", icon: Icon(Icons.home)),
                 BottomNavigationBarItem(label: "Page2", icon: Icon(Icons.add)),
                 BottomNavigationBarItem(
@@ -70,3 +73,5 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+
+
