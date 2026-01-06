@@ -3,8 +3,8 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as path;
 
 Map<int, String> scripts = {
-  1: ''' CREAT TABLE taredas(
-        id INT PRIMARY KEY AUTOINCREMENT,
+  1: ''' CREATE TABLE tarefas(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         descricao TEXT,
         concluido INTERGER
         );''',
