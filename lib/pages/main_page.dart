@@ -4,7 +4,7 @@ import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_sqlite_page.dart';
 import 'package:trilhaapp/pages/consulta_cep.dart';
-import 'package:trilhaapp/shared/widget/coston_drawer.dart';
+import 'package:trilhaapp/shared/widget/custon_drawer.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

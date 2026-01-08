@@ -3,6 +3,7 @@ import 'package:trilhaapp/pages/login_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/pages/numeros_aleatorio/numeros_aleatorios_hive_page.dart';
+import 'package:trilhaapp/pages/post_page.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({super.key});
@@ -177,12 +178,35 @@ class CustonDrawer extends StatelessWidget {
               width: double.infinity,
               child: Row(
                 children: [
+                  const Icon(Icons.post_add),
+                  SizedBox(width: 5),
+                  Text("Posts"),
+                ],
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (bc) => const PostsPage()),
+              );
+            },
+          ),
+          Divider(),
+          SizedBox(height: 10),
+          InkWell(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              width: double.infinity,
+              child: Row(
+                children: [
                   const Icon(Icons.exit_to_app),
                   SizedBox(width: 5),
                   Text("Sair"),
                 ],
               ),
             ),
+
             onTap: () {
               showDialog(
                 context: context,
