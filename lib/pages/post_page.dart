@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/pages/comments_page.dart';
 import 'package:trilhaapp/repositories/post_model.dart';
+import 'package:trilhaapp/repositories/posts/impl/posts_http_repository.dart';
+import 'package:trilhaapp/repositories/posts/posts_dio_repository.dart';
 import 'package:trilhaapp/repositories/posts_repository.dart';
 
 class PostsPage extends StatefulWidget {
@@ -11,12 +14,13 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-  var postsRepository = PostsRepository();
+  late PostsRepository postsRepository;
   var posts = <PostModel>[];
 
   void initState() {
     // TODO: implement initState
     super.initState();
+    postsRepository = PostsDioRepository();
     carregarDados();
   }
 

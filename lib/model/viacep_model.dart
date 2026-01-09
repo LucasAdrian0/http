@@ -28,40 +28,40 @@ class ViaCEPModel {
       String? ddd,
       String? siafi}) {
     if (cep != null) {
-      this._cep = cep;
+      _cep = cep;
     }
     if (logradouro != null) {
-      this._logradouro = logradouro;
+      _logradouro = logradouro;
     }
     if (complemento != null) {
-      this._complemento = complemento;
+      _complemento = complemento;
     }
     if (unidade != null) {
-      this._unidade = unidade;
+      _unidade = unidade;
     }
     if (bairro != null) {
-      this._bairro = bairro;
+      _bairro = bairro;
     }
     if (localidade != null) {
-      this._localidade = localidade;
+      _localidade = localidade;
     }
     if (uf != null) {
-      this._uf = uf;
+      _uf = uf;
     }
     if (estado != null) {
-      this._estado = estado;
+      _estado = estado;
     }
     if (regiao != null) {
-      this._regiao = regiao;
+      _regiao = regiao;
     }
     if (ibge != null) {
-      this._ibge = ibge;
+      _ibge = ibge;
     }
     if (gia != null) {
-      this._gia = gia;
+      _gia = gia;
     }
     if (ddd != null) {
-      this._ddd = ddd;
+      _ddd = ddd;
     }
     if (siafi != null) {
       this._siafi = siafi;
