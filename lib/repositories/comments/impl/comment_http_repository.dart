@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:trilhaapp/model/comment_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:trilhaapp/repositories/comments/comments_repository.dart';
+import 'package:trilhaapp/repositories/sqlite/comments_repository.dart';
 
 class CommentsHttpRepository implements CommentsRepository {
   @override

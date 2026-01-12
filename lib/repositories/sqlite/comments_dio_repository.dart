@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:trilhaapp/model/comment_model.dart';
-import 'package:trilhaapp/repositories/comments/comments_repository.dart';
+import 'package:trilhaapp/repositories/sqlite/comments_repository.dart';
 
 class CommentsDioRepository implements CommentsRepository {
   @override

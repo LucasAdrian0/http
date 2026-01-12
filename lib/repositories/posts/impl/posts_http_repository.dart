@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:trilhaapp/repositories/post_model.dart';
+import 'package:trilhaapp/model/post_model.dart';
 
-import '../../posts_repository.dart';
+import '../posts_repository.dart';
 
 class PostsHttpRepository implements PostsRepository{
   @override
