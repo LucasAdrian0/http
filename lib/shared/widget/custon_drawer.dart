@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/pages/binance/variacao_pre%C3%A7o_page.dart';
 import 'package:trilhaapp/pages/login_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/pages/numeros_aleatorio/numeros_aleatorios_hive_page.dart';
 import 'package:trilhaapp/pages/post_page.dart';
+import 'package:trilhaapp/repositories/binance/endpoint_publico/binance_repository.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({super.key});
@@ -189,6 +191,28 @@ class CustonDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (bc) => const PostsPage()),
+              );
+            },
+          ),
+          Divider(),
+          SizedBox(height: 10),
+          InkWell(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              width: double.infinity,
+              child: Row(
+                children: [
+                  const Icon(Icons.monetization_on_outlined),
+                  SizedBox(width: 5),
+                  Text("Binance"),
+                ],
+              ),
+            ),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (bc) => const VariacaPrecoPage()),
               );
             },
           ),
