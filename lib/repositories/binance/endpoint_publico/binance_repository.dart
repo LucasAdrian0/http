@@ -14,7 +14,7 @@ class BinanceVariacaoDePrecoRepository {
     //API da Binance não utiliza md5 e sim SHA256
 
     //Variação de preço Binance de todas criptomoedas
-    final response = await dio.get(
+    var response = await dio.get(
       'https://api.binance.com/api/v3/ticker/24hr',
     );
     return (response.data as List)

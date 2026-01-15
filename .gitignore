@@ -48,3 +48,6 @@ app.*.map.json
 #archive .mp4
 echo "*.mp4" >> .gitignore
 .mp4
+
+#ignorar arquivo que contem as chaves de api 
+.env
