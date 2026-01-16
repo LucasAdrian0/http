@@ -6,7 +6,7 @@ class TarefaSQLiteModel {
   TarefaSQLiteModel(this._id, this._descricao, this._concluido);
   int get id => _id;
 
-  set id (int id) {
+  set id(int id) {
     _id = _id;
   }
 

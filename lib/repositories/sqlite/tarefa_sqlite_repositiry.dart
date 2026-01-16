@@ -2,7 +2,7 @@
 import 'package:trilhaapp/model/tarefa_sqlite_model.dart';
 import 'package:trilhaapp/repositories/sqlite/sqlite_database.dart';
 
-class TarefaSQLiteRepositiry {
+class TarefaSQLiteRepository {
   Future<List<TarefaSQLiteModel>> obterDados(bool apenasNaoConcluidos) async {
 
     List<TarefaSQLiteModel> tarefas = [];
@@ -47,3 +47,5 @@ class TarefaSQLiteRepositiry {
     await db.rawInsert('DELETE tarefas WHERE id = ?', [id]);
   }
 }
+
+

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/comment_model.dart';
 import 'package:trilhaapp/repositories/comments/impl/comment_dio_reposiotory.dart';
-import 'package:trilhaapp/repositories/comments/impl/comment_http_repository.dart';
 import 'package:trilhaapp/repositories/sqlite/comments_repository.dart';
 
 class CommentsPage extends StatefulWidget {

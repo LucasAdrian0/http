@@ -10,7 +10,7 @@ class TarefaSQLitePage extends StatefulWidget {
 }
 
 class _TarefaSQLitePageState extends State<TarefaSQLitePage> {
-  TarefaSQLiteRepositiry tarefaRepository = new TarefaSQLiteRepositiry();
+  TarefaSQLiteRepository tarefaRepository = new TarefaSQLiteRepository();
   var _tarefas = const <TarefaSQLiteModel>[];
   var descricaoController = TextEditingController();
   var apenasNaoConcluidos = false;
@@ -93,7 +93,7 @@ class _TarefaSQLitePageState extends State<TarefaSQLitePage> {
                   var tarefa = _tarefas[index];
                   return Dismissible(
                     onDismissed: (DismissDirection dismissDerection) async {
-                      tarefaRepository.remover (tarefa.id);
+                      tarefaRepository.remover(tarefa.id);
                       obterTarefas();
                     },
                     key: Key(tarefa.descricao),

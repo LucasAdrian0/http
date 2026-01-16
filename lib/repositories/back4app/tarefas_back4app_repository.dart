@@ -1,15 +1,51 @@
+import 'dart:math';
+
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:trilhaapp/model/tarefas_back4app_model.dart';
+import 'package:trilhaapp/repositories/back4app/back4App_custon_dio.dart';
 
 class TarefasBack4appRepository {
-  Future<TarefasBack4AppModel> obterTarefas() async {
-    var dio = Dio();
-    dio.options.headers["X-Parse-Application-Id"] =
-        "WIigcYdfkNFLgun2vsR6EIHOsMPJrCg1ebtNZ7Zi";
-    dio.options.headers["X-Parse-REST-API-Key"] =
-        "XVUWP1n0HqRK0eP4exGIMju3QL1k1hkLy5cDmpGc";
-    dio.options.headers["Content-Type"] = "application/json";
-    var result = await dio.get('https://parseapi.back4app.com/classes/Tarefas');
+  final _custonDio = Back4appCustonDio();
+
+  TarefasBack4appRepository();
+
+  Future<TarefasBack4AppModel> obterTarefas(bool naoConcluidas) async {
+    var url = "/Tarefas";
+    if (naoConcluidas) {
+      url = "$url?where={\"concluido\":false}";
+    }
+    var result = await _custonDio.dio.get(url);
     return TarefasBack4AppModel.fromJson(result.data);
+  }
+
+  Future<void> criar(TarefaBack4AppModel tarefaBack4AppModel) async {
+    try {
+      await _custonDio.dio.post(
+        '/Tarefas',
+        data: tarefaBack4AppModel.toJsonEndpoint(),
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> atualizar(TarefaBack4AppModel tarefaBack4AppModel) async {
+    try {
+      await _custonDio.dio.put(
+        '/Tarefas/${tarefaBack4AppModel.objectId}',
+        data: tarefaBack4AppModel.toJsonEndpoint(),
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> remover(String objectId) async {
+    try {
+      await _custonDio.dio.delete('/Tarefas/$objectId');
+    } catch (e) {
+      throw e;
+    }
   }
 }

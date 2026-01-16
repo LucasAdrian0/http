@@ -33,6 +33,7 @@ class TarefaBack4AppModel {
     required this.createdAt,
     required this.updatedAt,
   });
+  TarefaBack4AppModel.criarTarefas(this.descricao, this.concluido);
 
   TarefaBack4AppModel.fromJson(Map<String, dynamic> json) {
     objectId = json['objectId'];
@@ -49,6 +50,13 @@ class TarefaBack4AppModel {
     data['concluido'] = concluido;
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
+    return data;
+  }
+
+  Map<String, dynamic> toJsonEndpoint() {
+    final Map<String, dynamic> data = {};
+    data['descricao'] = descricao;
+    data['concluido'] = concluido;
     return data;
   }
 }

@@ -63,7 +63,7 @@ class _VariacaPrecoPageState extends State<VariacaPrecoPage> {
                   return Card(
                     child: ListTile(
                       title: Text(preco.symbol ?? ''),
-                      subtitle: Text("Ultimo preço: ${preco.lastPrice ?? '-'}"),
+                      subtitle: Text('Ultimo preço: ${ preco.lastPrice ?? '-'}'),
                     ),
                   );
                 },
